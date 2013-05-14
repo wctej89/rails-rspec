@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe 'Admin' do
+describe 'Admin', :js => true  do
   context "on admin homepage" do
     it "can see a list of recent posts"
     it "can edit a post by clicking the edit link next to a post"
     it "can delete a post by clicking the delete link next to a post"
-    it "can create a new post and view it" do
-       visit new_admin_post_url
-
+    it "can create a new post and view it"do
+       visit new_admin_post_path
+       debugger
        expect {
          fill_in 'post_title',   with: "Hello world!"
          fill_in 'post_content', with: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
