@@ -16,6 +16,6 @@ class Post < ActiveRecord::Base
   end
 
   def make_slug
-    self.slug = self.title.parameterize
+    self.slug = title.parameterize
   end
 end
