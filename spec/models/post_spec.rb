@@ -1,4 +1,4 @@
-require 'spec_helper'
+posrequire 'spec_helper'
 
 describe Post do
   it "title should be automatically titleized before save" do

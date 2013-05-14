@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::PostsController do
   describe "admin panel" do
     it "welcome page requires http authentication" do
-      get :index
+      get :index  
       response.status.should eq 401
     end
 

@@ -1,6 +1,12 @@
 class Admin::PostsController < ApplicationController
+  
+  USER_NAME, PASSWORD = "geek", "jock"
+  before_filter :authenticate, :except => [:new, :show, :edit]
+
   def index
+
     @posts = Post.all
+
   end
 
   def new
