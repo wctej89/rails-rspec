@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  # before_filter :authenticate
+
 
   def index
     @posts = Post.all
@@ -9,5 +9,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  
+
+
 end

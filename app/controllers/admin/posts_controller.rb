@@ -1,6 +1,9 @@
 class Admin::PostsController < ApplicationController
+  before_filter :authenticate, :only => :index
+
   def index
     @posts = Post.all
+    # render status: 401
   end
 
   def new
@@ -41,5 +44,11 @@ class Admin::PostsController < ApplicationController
     post.destroy
 
     redirect_to admin_posts_url
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "geek" && password == "jock"
+    end
   end
 end
