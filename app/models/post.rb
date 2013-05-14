@@ -5,11 +5,17 @@ class Post < ActiveRecord::Base
 
   before_save :titleize_title
 
+  after_save :make_slug
+
   validates_presence_of :title, :content
 
   private
 
   def titleize_title
     self.title = title.titleize
+  end
+
+  def make_slug
+    self.slug = self.title.parameterize
   end
 end
