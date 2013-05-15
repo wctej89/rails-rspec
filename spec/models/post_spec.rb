@@ -2,11 +2,15 @@ require 'spec_helper'
 
 describe Post do
   it "title should be automatically titleized before save" do
-    pending
+    post = Post.new(title:"undercase",content:"undercase")
+    post.save
+    post.title = "undercase".titleize
   end
 
   it "post should be unpublished by default" do
-    pending
+    post = Post.new(title:"undercase",content:"undercase")
+    post.save
+    post.is_published = false
   end
 
   it "slug should be automatically generated" do
