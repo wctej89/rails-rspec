@@ -29,13 +29,15 @@ describe 'User', :js => true do
       # when a user can clicks on a post title they should be on the post show page
     end
     it "can not see the edit link" do
-      pending
+      visit posts_path
+      page.should_not have_link("Edit")
       # given a user and a list of posts
       # user visits the homepage
       # user should not see any edit links
     end
     it "can not see the delete link" do
-      pending
+      visit posts_path
+      page.should_not have_link("Delete")
       # given a user and a list of posts
       # user visits the homepage
       # user should not see any delete links
