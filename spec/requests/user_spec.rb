@@ -10,7 +10,7 @@ describe 'User' do
       post.save
       visit root_url
       page.should have_content "Recent Posts:"
-      page.should have_content post_title
+      page.should have_content post.title
 
       # page.should have_content
       # given a user and a list of posts
@@ -20,7 +20,7 @@ describe 'User' do
     it "can not see bodies of the recent posts" do
       visit root_url 
       page.should_not have_content "Recent Posts:"
-      page.should_not have_content post_title
+      page.should_not have_content post.title
 
       # given a user and a list of posts
       # user visits the homepage
@@ -29,7 +29,7 @@ describe 'User' do
     it "can click on titles of recent posts and should be on the post show page" do
       post.save
       visit root_url
-      click_link(post_title)
+      click_link(post.title)
       current_url.should include(post_path(post))
 
       # given a user and a list of posts
@@ -60,8 +60,8 @@ describe 'User' do
     it "sees title and body of the post" do
       post.save
       visit post_path(post)
-      page.should have_content(post_title)
-      page.should have_content(post_content)
+      page.should have_content(post.title)
+      page.should have_content(post.content)
 
       # given a user and post(s)
       # user visits the post show page
