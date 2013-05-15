@@ -1,8 +1,10 @@
-posrequire 'spec_helper'
+require 'spec_helper'
 
 describe Post do
   it "title should be automatically titleized before save" do
-    pending
+    post = Post.new
+    post.title = "New Post!"
+    post.save
   end
 
   it "post should be unpublished by default" do
