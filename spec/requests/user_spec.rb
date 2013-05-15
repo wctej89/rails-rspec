@@ -54,6 +54,8 @@ describe 'User' do
 
   context "post show page" do
     it "sees title and body of the post" do
+      pending
+      
       post.save
       click_link(post_title)
       page.should have_content(post_title)
@@ -65,6 +67,10 @@ describe 'User' do
     end
     it "can not see the edit link" do
       pending
+
+      post.save
+      click_link(post_title)
+      page.should_not have_link "Edit"
       # given a user and post(s)
       # user visits the post show page
       # user should not see the post edit link

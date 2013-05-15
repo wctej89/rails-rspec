@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-  http_basic_authenticate_with :name => 'geek', :password => 'jock', :except =>  :new
+  # http_basic_authenticate_with :name => 'geek', :password => 'jock', :except =>  :new
 
   def index
     @posts = Post.all

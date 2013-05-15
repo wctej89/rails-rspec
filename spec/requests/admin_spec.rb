@@ -8,19 +8,18 @@ describe 'Admin' do
 
   context "on admin homepage" do
     it "can see a list of recent posts"  do
-      pending
-
-      visit admin_posts_url
-      page.driver.browser.basic_authorize('geek', 'jock')
-      page.should have_content "All posts:"
+      post
+      visit admin_posts_path
+      # page.driver.browser.basic_authorize('geek', 'jock')
+      page.should have_content(post_title)
     end
+
     it "can edit a post by clicking the edit link next to a post" do
-      pending
-
-      visit admin_posts_url
+      post
+      visit admin_posts_path
       click_link "Edit"
-  
     end
+
     it "can delete a post by clicking the delete link next to a post"
     it "can create a new post and view it" do
        visit new_admin_post_url
@@ -41,7 +40,11 @@ describe 'Admin' do
   context "editing post" do
     it "can mark an existing post as unpublished" do
       pending
-
+      
+      post
+      visit edit_admin_post_url(post)
+      page.check('post_is_published')
+   
       page.should have_content "Published: false"
     end
   end
