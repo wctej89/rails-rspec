@@ -8,7 +8,10 @@ describe Post do
   end
 
   it "post should be unpublished by default" do
-    pending
+    post = Post.new
+    post.is_published.should eq false
+    post.save
+
   end
 
   it "slug should be automatically generated" do
