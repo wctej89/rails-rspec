@@ -4,6 +4,5 @@ DbcRspecRails::Application.routes.draw do
   end
 
   resources :posts
-
   root :to => "home#index"
 end

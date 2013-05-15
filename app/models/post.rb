@@ -7,9 +7,19 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
+  after_save :generate_slug
+
+
+
+  
+
+  def generate_slug
+    self.slug = self.title.parameterize
+  end
+
   private
 
   def titleize_title
-    self.title = title.titleize
+    self.title = title.capitalize
   end
 end

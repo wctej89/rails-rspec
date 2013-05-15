@@ -6,14 +6,16 @@ describe 'Admin' do
     it "can edit a post by clicking the edit link next to a post"
     it "can delete a post by clicking the delete link next to a post"
     it "can create a new post and view it" do
-       visit new_admin_post_url
+      
+       visit new_admin_post_path
 
        expect {
          fill_in 'post_title',   with: "Hello world!"
          fill_in 'post_content', with: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
          page.check('post_is_published')
          click_button "Save"
-       }.to change(Post, :count).by(1)
+         save_page
+       }.to change{Post.count}.by(1)
 
        page.should have_content "Published: true"
        page.should have_content "Post was successfully saved."

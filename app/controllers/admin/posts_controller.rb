@@ -1,4 +1,7 @@
 class Admin::PostsController < ApplicationController
+
+http_basic_authenticate_with :name => "geek", :password => "jock", :except => [:new, :show, :edit, :create]
+
   def index
     @posts = Post.all
   end
@@ -7,6 +10,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.new
   end
 
+# , :slug => params[:post][:title].parameterize
   def create
     @post = Post.new(params[:post])
 

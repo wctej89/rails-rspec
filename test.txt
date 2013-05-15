@@ -1,0 +1,15 @@
+  1) Admin on admin homepage can create a new post and view it
+     Failure/Error: fill_in 'post_title',   with: "Hello world!"
+     Capybara::ElementNotFound:
+       Unable to find field "post_title"
+     # ./spec/requests/admin_spec.rb:12:in `block (4 levels) in <top (required)>'
+     # ./spec/requests/admin_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+
+ 2) Admin on admin homepage can create a new post and view it
+     Failure/Error: visit new_admin_post_url
+     ActionView::Template::Error:
+       Missing partial posts/_form with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+         * "/Users/apprentice/Desktop/rails-rspec/app/views"
+     # ./app/views/admin/posts/new.html.erb:1:in `_app_views_admin_posts_new_html_erb__4610975363785317424_70127396028060'
+     # ./spec/requests/admin_spec.rb:9:in `block (3 levels) in <top (required)>'
