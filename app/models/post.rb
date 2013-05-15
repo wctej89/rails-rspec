@@ -16,6 +16,4 @@ class Post < ActiveRecord::Base
   def slugify_slug
     self.slug = title.downcase.gsub(/\W/, ' ').strip.gsub(/ /, '-')
   end
-
-  
 end
