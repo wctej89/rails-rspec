@@ -1,6 +1,7 @@
 <H1>Welcome to my blog!</h1>
 
 <%= link_to "View All Posts", posts_url %>
+<%= link_to "Admin Homepage", admin_posts_path %>
 
 <% if @recent_posts.any? %>
   <h4>Recent Posts:</h4>

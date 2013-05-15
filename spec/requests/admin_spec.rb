@@ -9,18 +9,22 @@ describe 'Admin' do
   context "on admin homepage" do
     it "can see a list of recent posts"  do
       post
-      visit admin_posts_path
-      # page.driver.browser.basic_authorize('geek', 'jock')
+      visit admin_posts_url
       page.should have_content(post.title)
     end
 
     it "can edit a post by clicking the edit link next to a post" do
       post
-      visit admin_posts_path
+      visit admin_posts_url
       click_link "Edit"
     end
 
-    it "can delete a post by clicking the delete link next to a post"
+    it "can delete a post by clicking the delete link next to a post" do
+      post
+      visit admin_posts_url
+      click_button "Delete"
+      page.should_not have_content post.title
+    end
     it "can create a new post and view it" do
        visit new_admin_post_url
 
@@ -49,8 +53,24 @@ describe 'Admin' do
   end
 
   context "on post show page" do
-    it "can visit a post show page by clicking the title"
-    it "can see an edit link that takes you to the edit post path"
-    it "can go to the admin homepage by clicking the Admin welcome page link"
+    it "can visit a post show page by clicking the title" do
+      post
+      visit admin_posts_url
+      click_link(post.title)
+    end
+
+    it "can see an edit link that takes you to the edit post path" do
+      post
+      visit admin_posts_url
+      page.should have_content "Edit"
+      click_link "Edit"
+      current_url.should include(edit_admin_post_path(post))
+    end
+
+    it "can go to the admin homepage by clicking the Admin welcome page link" do
+      visit root_url
+      click_link "Admin Homepage"
+      current_url.should include(admin_posts_url)
+    end
   end
 end
