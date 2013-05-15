@@ -87,7 +87,10 @@ describe 'User' do
       # user should not see the published flag content
     end
     it "can not see the Admin homepage link" do
-      pending
+      post.save
+      visit post_path(post)
+      current_url.should_not include(admin_post_path(post))
+
       # given a user and post(s)
       # user visits the post show page
       # user should not see the the admin homepage link
