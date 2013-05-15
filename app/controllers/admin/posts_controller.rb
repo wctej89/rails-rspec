@@ -41,9 +41,8 @@ http_basic_authenticate_with :name => "geek", :password => "jock", :except => [:
   end
 
   def destroy
-    post = Post.find(params[:destroy])
-    post.destroy
-
+    @post = Post.find(params[:id])
+    @post.destroy
     redirect_to admin_posts_url
   end
 end
