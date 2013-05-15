@@ -45,27 +45,36 @@ describe 'User', :js => true do
   end
 
   context "post show page" do
+
+  let!(:post){ Post.create!(title:"New Post!", content:"a great post", is_published:true)}
+
     it "sees title and body of the post" do
-      pending
+      visit post_path(post)
+
+      page.should have_content("New Post!")
+      page.should have_content("a great post")
       # given a user and post(s)
       # user visits the post show page
       # user should see the post title
       # user should see the post body
     end
     it "can not see the edit link" do
-      pending
+      visit post_path(post)
+      page.should_not have_link("Edit")
       # given a user and post(s)
       # user visits the post show page
       # user should not see the post edit link
     end
     it "can not see the published flag" do
-      pending
+      visit post_path(post)
+      page.should_not have_content("true")
       # given a user and post(s)
       # user visits the post show page
       # user should not see the published flag content
     end
     it "can not see the Admin homepage link" do
-      pending
+      visit post_path(post)
+      page.should_not have_link("Admin welcome page")
       # given a user and post(s)
       # user visits the post show page
       # user should not see the the admin homepage link

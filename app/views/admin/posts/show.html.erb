@@ -5,7 +5,8 @@
 <%= link_to "Admin welcome page", admin_posts_url %>
 <%= link_to "Edit post", edit_admin_post_url(@post) %>
 <br>
+
 <br>
-Published: <%= @post.is_published? %>
+<p>Published: <%= @post.is_published %></p>
 <h1><%= @post.title %></h1>
-<%= simple_format @post.content %>
+<p><%= simple_format @post.content %></p>
