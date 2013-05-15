@@ -42,7 +42,7 @@ describe 'Admin' do
       pending
       
       post
-      visit edit_admin_post_url(post)
+      visit edit_admin_post_path(post)
       page.check('post_is_published')
    
       page.should have_content "Published: false"
