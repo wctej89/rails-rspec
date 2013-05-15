@@ -1,5 +1,9 @@
 class Admin::PostsController < ApplicationController
+  # before_filter :require_login 
+
+
   def index
+    require_login
     @posts = Post.all
   end
 
@@ -41,5 +45,11 @@ class Admin::PostsController < ApplicationController
     post.destroy
 
     redirect_to admin_posts_url
+  end
+
+  def require_login
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "geek" && password == "jock"
+    end
   end
 end
