@@ -3,62 +3,46 @@ require 'spec_helper'
 describe 'User' do
   context "on homepage" do
     it "sees a list of recent posts titles" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user can see the posts titles
+      visit root_path
+      page.should have_content(Post.first.title)
     end
     it "can not see bodies of the recent posts" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user should not see the posts bodies
+      visit root_path
+      page.should_not have_content(Post.first.content)
     end
     it "can click on titles of recent posts and should be on the post show page" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # when a user can clicks on a post title they should be on the post show page
+      visit root_path
+      all('a')[1].click
+      page.should have_content(Post.first.content)
     end
     it "can not see the edit link" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user should not see any edit links
+      visit root_path
+      page.should_not have_link('Edit')
     end
     it "can not see the delete link" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user should not see any delete links
+      visit root_path
+      page.should_not have_link('Delete')
     end
   end
 
   context "post show page" do
+    let(:post){ Post.first }
     it "sees title and body of the post" do
-      pending
-      # given a user and post(s)
-      # user visits the post show page
-      # user should see the post title
-      # user should see the post body
+      visit post_path(post)
+      page.should have_content(post.title)
+      page.should have_content(post.content)
     end
     it "can not see the edit link" do
-      pending
-      # given a user and post(s)
-      # user visits the post show page
-      # user should not see the post edit link
+      visit post_path(post)
+      page.should_not have_link('Edit')
     end
     it "can not see the published flag" do
-      pending
-      # given a user and post(s)
-      # user visits the post show page
-      # user should not see the published flag content
+      visit post_path(post)
+      page.should_not have_content('Published: ')
     end
     it "can not see the Admin homepage link" do
-      pending
-      # given a user and post(s)
-      # user visits the post show page
-      # user should not see the the admin homepage link
+      visit post_path(post)
+      page.should_not have_link('Admin welcome page')
     end
   end
 end
