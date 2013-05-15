@@ -1,13 +1,14 @@
 require 'spec_helper'
+# binding.pry
 
 describe 'User' do
   context "on homepage" do
     it "sees a list of recent posts titles" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user can see the posts titles
+      visit posts_path
+      page.should have_content(Post.first.title)
+      page.should have_content(Post.first.content)
     end
+    
     it "can not see bodies of the recent posts" do
       pending
       # given a user and a list of posts
