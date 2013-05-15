@@ -1,27 +1,38 @@
 require 'spec_helper'
 
 describe 'User' do
+  let(:post) {Post.new(title: "Recent", content: "Post", is_published: true)}
   context "on homepage" do
     it "sees a list of recent posts titles" do
-      pending
+      post.save
+      visit root_url
+      page.should have_content "Recent Posts:"
+      # page.should have_content
       # given a user and a list of posts
       # user visits the homepage
       # user can see the posts titles
     end
     it "can not see bodies of the recent posts" do
-      pending
+      visit root_url 
+      page.should_not have_content "Recent Posts:"
       # given a user and a list of posts
       # user visits the homepage
       # user should not see the posts bodies
     end
     it "can click on titles of recent posts and should be on the post show page" do
-      pending
+      post.save
+      visit root_url
+      click_link "Recent"
+      current_url.should include("/posts/")
+
       # given a user and a list of posts
       # user visits the homepage
       # when a user can clicks on a post title they should be on the post show page
     end
     it "can not see the edit link" do
-      pending
+      post.save
+      visit root_url
+      page.should_not have_link "Edit"
       # given a user and a list of posts
       # user visits the homepage
       # user should not see any edit links
