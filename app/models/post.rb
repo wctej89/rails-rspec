@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
 
   before_save :titleize_title
 
+  after_save :slugulize_title
+
   validates_presence_of :title, :content
 
   private
@@ -12,4 +14,10 @@ class Post < ActiveRecord::Base
   def titleize_title
     self.title = title.titleize
   end
+
+  def slugulize_title
+    # needs more stripping
+    self.slug = title.downcase.gsub(' ', '-').gsub(/\!/, '')
+  end
+
 end

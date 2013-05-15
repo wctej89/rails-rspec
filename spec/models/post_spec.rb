@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe Post do
 
-  let(:post) = {Post.new}
+  let(:post) { Post.new(title: 'hello world', content: "foobar") }
 
   it "title should be automatically titleized before save" do
-    pending
+    post.save
+    post.title.should eq 'Hello World'
   end
 
   it "post should be unpublished by default" do

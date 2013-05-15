@@ -1,1 +1,6 @@
-new.html.erb
+<%= form_for @post do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :content %>
+  <%= f.check_box :is_published, :value => "true" %>
+  <%= f.submit :value =>"Save" %>
+<% end %>
