@@ -11,7 +11,7 @@ describe 'Admin' do
       post
       visit admin_posts_path
       # page.driver.browser.basic_authorize('geek', 'jock')
-      page.should have_content(post_title)
+      page.should have_content(post.title)
     end
 
     it "can edit a post by clicking the edit link next to a post" do
@@ -39,11 +39,10 @@ describe 'Admin' do
 
   context "editing post" do
     it "can mark an existing post as unpublished" do
-      pending
-      
       post
       visit edit_admin_post_path(post)
-      page.check('post_is_published')
+      page.uncheck('post_is_published')
+      click_button "Save"
    
       page.should have_content "Published: false"
     end
