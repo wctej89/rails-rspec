@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 describe 'User' do
-  let(:post) {Post.new(title: "Recent", content: "Post", is_published: true)}
+  let(:post_title) {"Post Title"}
+  let(:post_content) {"Post Content"}
+  let(:post) {Post.new(title: post_title, content: post_content, is_published: true)}
+  
   context "on homepage" do
     it "sees a list of recent posts titles" do
       post.save
       visit root_url
       page.should have_content "Recent Posts:"
+      page.should have_content post_title
       # page.should have_content
       # given a user and a list of posts
       # user visits the homepage
@@ -15,6 +19,7 @@ describe 'User' do
     it "can not see bodies of the recent posts" do
       visit root_url 
       page.should_not have_content "Recent Posts:"
+      page.should_not have_content post_title
       # given a user and a list of posts
       # user visits the homepage
       # user should not see the posts bodies
@@ -22,7 +27,7 @@ describe 'User' do
     it "can click on titles of recent posts and should be on the post show page" do
       post.save
       visit root_url
-      click_link "Recent"
+      click_link(post_title)
       current_url.should include("/posts/")
 
       # given a user and a list of posts
@@ -38,7 +43,9 @@ describe 'User' do
       # user should not see any edit links
     end
     it "can not see the delete link" do
-      pending
+      post.save
+      visit root_url
+      page.should_not have_link "Delete"
       # given a user and a list of posts
       # user visits the homepage
       # user should not see any delete links
@@ -47,7 +54,10 @@ describe 'User' do
 
   context "post show page" do
     it "sees title and body of the post" do
-      pending
+      post.save
+      click_link(post_title)
+      page.should have_content(post_title)
+      page.should have_content(post_content)
       # given a user and post(s)
       # user visits the post show page
       # user should see the post title

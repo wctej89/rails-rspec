@@ -1,13 +1,31 @@
 require 'spec_helper'
 
 describe 'Admin' do
+
+  let(:post_title) {"Post Title"}
+  let(:post_content) {"Post Content"}
+  let(:post) {Post.create(title: post_title, content: post_content, is_published: true)}
+
   context "on admin homepage" do
-    it "can see a list of recent posts"
-    it "can edit a post by clicking the edit link next to a post"
+    it "can see a list of recent posts"  do
+      pending
+
+      visit admin_posts_url
+      page.driver.browser.basic_authorize('geek', 'jock')
+      page.should have_content "All posts:"
+    end
+    it "can edit a post by clicking the edit link next to a post" do
+      pending
+
+      visit admin_posts_url
+      click_link "Edit"
+  
+    end
     it "can delete a post by clicking the delete link next to a post"
     it "can create a new post and view it" do
        visit new_admin_post_url
 
+       page.driver.browser.basic_authorize('geek', 'jock')
        expect {
          fill_in 'post_title',   with: "Hello world!"
          fill_in 'post_content', with: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
