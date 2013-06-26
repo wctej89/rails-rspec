@@ -6,7 +6,7 @@
   <h4>Recent Posts:</h4>
 
   <% @recent_posts.each do |post| %>
-    <%= link_to post.title, post_url(post) %>
+    <%= link_to post.title, post_path(post.id) %>
     <br>
   <% end %>
 <% end %>
