@@ -1,4 +1,6 @@
 class Admin::PostsController < ApplicationController
+  # http_basic_authenticate_with name: "jock", password: "geek", only: :index
+
   def index
     @posts = Post.all
   end

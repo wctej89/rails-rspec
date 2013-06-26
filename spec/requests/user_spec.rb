@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe 'User' do
+  let(:post) { Post.create(title: "afb", content: "adfdgf")}
   context "on homepage" do
-    it "sees a list of recent posts titles" do
-      pending
-      # given a user and a list of posts
-      # user visits the homepage
-      # user can see the posts titles
+    before :each do
+      visit root_path
     end
+
+    it "sees a list of recent posts titles", js: true do
+      Post.create(title: "afb", content: "adfdgf")
+      page.should have_content 'Recent Posts'
+    end
+
     it "can not see bodies of the recent posts" do
       pending
       # given a user and a list of posts

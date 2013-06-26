@@ -1,10 +1,28 @@
 require 'spec_helper'
 
 describe 'Admin' do
+  
+  let!(:post) { FactoryGirl.create(:post) }
+  
   context "on admin homepage" do
-    it "can see a list of recent posts"
-    it "can edit a post by clicking the edit link next to a post"
-    it "can delete a post by clicking the delete link next to a post"
+    before :each do
+      visit '/admin/posts'
+    end
+
+    it "can see a list of recent posts" do
+      pending
+    end
+
+    it "can edit a post by clicking the edit link next to a post", js: true do
+      click_link "Edit"
+      page.should have_content "Edit"
+    end
+
+    it "can delete a post by clicking the delete link next to a post" do
+      click_link "Edit"
+      page.should have_content "Edit"
+    end
+
     it "can create a new post and view it" do
        visit new_admin_post_url
 
